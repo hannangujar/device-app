@@ -1,0 +1,14 @@
+
+ <li>
+    <%= review.content %> 
+    <small>Submitted</small>
+    <%= form_for [review, Review.new] do |f| %>
+        <%= f.text_area :content, placeholder: "Add a Review" %><br/>
+        <%= f.submit "Review"  %>
+        <% end %>
+
+    <ul>
+        <%= render review.reviews %>
+    </ul>
+
+  </li>

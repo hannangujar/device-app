@@ -1,0 +1,16 @@
+<p style="color: green"></p>
+  <%= render @product %>
+<h3>Reviews</h3>
+
+  <%= form_for([@product, Review.new]) do |f| %>
+    <%= f.text_area :content, placeholder: "Add a review" %><br/>
+    <%= f.submit "Add Review" %>
+  <% end %>
+
+ 
+<strong>
+  Reviews:
+  <ul>
+   <%= render @product.reviews %>
+   </ul>
+</strong>
