@@ -29,7 +29,7 @@ class ReviewsController < ApplicationController
         format.html { redirect_to @product, notice: "Review was successfully created." }
         format.json { render :show, status: :created, location: @review }
       else
-        format.html { redirect_to @product, notice:  :unprocessable_entity}
+        format.html { redirect_to @product, notice:  "Review was not created"}
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end

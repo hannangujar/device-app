@@ -1,9 +1,26 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
 
+  include Filterable
   # GET /products or /products.json
   def index
-    @products = Product.all
+    if params["filter"]
+      @products = Company.find(params["filter"]).products
+    elsif params["search"]
+      @filter = params["search"]["company"].concat(params["search"]["strengths"]).flatten.reject(&:blank?)
+      @products = Product.all.global_search("#{@filter}")
+    else
+      @products = Product.all
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end  
+  end
+
+  def list
+    products = filter!(Product)
+    render(partial: 'product', locals: { products: products })
   end
 
   # GET /products/1 or /products/1.json
@@ -65,6 +82,10 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :title, :discription, :price, :image_path, :company_id)
+      params.require(:product).permit(:name, :filter, :title, :discription, :price, :image_path, :company_id)
+    end
+
+    def filter_params
+      params.permit(:name, :title, :price)
     end
 end

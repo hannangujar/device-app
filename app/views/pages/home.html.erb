@@ -1,2 +1,7 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+  <%= form_tag(products_path, :method => "get") do %>
+  <%= select_tag :filter, options_for_select(Company.all.collect { |p| [ p.name, p.id ] }), include_blank: true %>
+    <%= submit_tag 'Filter' %>
+<% end %>
+<h1>Products</h1>
+    <%= render @products %>  
+<%= paginate @products %>

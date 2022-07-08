@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :user, :product
 
-  def initialize(user, record)
+  def initialize(user, product)
     @user = user
-    @record = record
+    @product = product
   end
 
   def index?
@@ -25,7 +25,7 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    user.admin? || !product.published?
   end
 
   def edit?

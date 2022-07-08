@@ -86,3 +86,6 @@ gem 'bootstrap', '~> 5.0.0-beta1'
 gem "devise", "~> 4.8.1"
 gem 'redis-rails'
 gem "pundit", "~> 2.2"
+gem 'acts-as-taggable-on', '~> 9.0'
+gem 'pg_search'
+gem 'filterrific'

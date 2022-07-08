@@ -21,8 +21,16 @@
           </ul>
         </li>
       </ul>
+      <%= form_with url: products_path, method: :get, data: { controller: "search-form", search_form_target: "form", turbo_frame: "players" } do |form| %>
+    <%= form.text_field :name,
+      placeholder: "Search by name",
+      class: "border border-blue-500 rounded p-2",
+      autocomplete: "off",
+      data: { action: "input->search-form#search" }
+    %>
+  <% end %>
         <%= form_tag(products_path, :method => "get", id: "search-form") do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Products" %>
         <%= submit_tag "Search",  class:"btn btn-outline-success" %>
         <% end %>
     </div>

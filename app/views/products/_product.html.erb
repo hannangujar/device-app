@@ -1,7 +1,7 @@
- <div class="card" style="width: 10rem;">
-            <%= link_to image_tag( product.image_path), product_path(product), class: "card-img-top" %> 
-            <div class="card-body">
-                <h5 class="card-title"><%= product.name %></h5>
-                <p class="card-text"> <%= "Price #{product.price}" %></p>
-            </div>
-        </div>
+<div class="col-xs-12 col-sm-8">
+    <%= link_to image_tag( product.image_path), product_path(product) %> 
+    <div>
+        <h5 ><%= product.name %></h5>
+        <p> <%= "Price #{product.price}" %></p>
+    </div>
+</div>
